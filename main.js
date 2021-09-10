@@ -3,6 +3,7 @@ var mainApp = {};
 var mainContainer = document.getElementById("main_container");
 
     var logtout =  function(){
+      //logout function, once log out then go to login.html  "Xiaodong Huang"
         firebase.auth().signOut().then(function(){
             console.log('success');
             window.location.replace("login.html");
@@ -12,11 +13,11 @@ var mainContainer = document.getElementById("main_container");
 var init = function(){
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-          // User is signed in.
+          //User is signed in. then it will stay sign in  "Xiaodong Huang"
           console.log("stay");
           mainContainer.style.display = "";
         } else {
-          // No user is signed in.
+          // No user is signed in. can't see the index page  "Xiaodong Huang"
           mainContainer.style.display = "none";
           console.log("redirect");
           window.location.replace("login.html");

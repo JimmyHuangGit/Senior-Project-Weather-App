@@ -1,49 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Senior Project Weather App</title>
-    <!-- firebase library "Xiaodong Huang"-->
-    <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase-auth.js"></script>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Senior Project Weather App</title>
+  <!-- firebase library "Xiaodong Huang"-->
+  <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase-auth.js"></script>
+  
+  <!-- Added stylesheet and bootstrap for easy styling "Brittani Gongre" -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <div id="main_container" style="display:none;">
-        <h1>click me</h1>
-    <!-- Display user's location "Xiaodong Huang"-->
+
+  <!-- navbar section "Brittani Gongre" -->
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <p class="navbar-brand weather-icon">
+          <img src="cloudy.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+        </p>
+        <div class="navbar-text navbar-left">
+          <strong>Team 5 Weather App</strong>
+        </div>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="#">Account Settings</a>
+        </li>
+      </ul>
     </div>
-    <p id="loca"></p>
+  </nav>
+
+  <div class="container-fluid">
+    <div id="main_container container" style="display:none;">
+      <!-- Display user's location "Xiaodong Huang"-->
+    </div>
+    <h3>Your GeoLocation  </h3>
+    <p id="lat"></p>
+    <p id="long"></p>
     <br>
     <!-- ask for user's input "Xiaodong Huang"-->
-    <div class="search">
-    <input type="text" class="cityLoc" placeholder="Search City">
-    <button>Search</button>
+    <div class="row justify-content-center search">
+      <div class="col-sm-3">
+        <div class="input-group">
+          <input type="text" class="form-control cityLoc" placeholder="Enter city...">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">Search</button>
+          </span>
+        </div>
+      </div>
     </div>
 
+    <button id="add-btn" type="button" class="btn btn-default">
+      Add
+    </button>
     
-    <!-- Display weather information based on user's input "Xiaodong Huang"-->
-    <div class="weather info">
-        <h2 class="cityName"></h2>
-        <div class="temp"></div>
-        <div class="pics">
-          <img src="https://openweathermap.org/img/wn/04n.png" alt="" class="icon" />
-          <div class="description"></div>
-        </div>
-        <div class="humidity"></div>
-        <div class="wind"></div>
-        <div class="visibility"></div>
-        <div class="pressure"></div>
-        <div class="sunrise"></div>
-        <div class="sunset"></div>
-      </div>
+    <!-- logout "Xiaodong Huang"-->
+    <div class="logout-btn text-left">
+      <button class="btn btn-danger" onclick="mainApp.logout();">
+        logout
+      </button>
+    </div>
 
-    <!-- logout "Xiaodong Huang"--> 
-    <button onclick="mainApp.logout();">logout</button>
-    <script src="script.js" defer></script>
+      <!-- Display weather information based on user's input "Xiaodong Huang"-->
+      <div id="weather-information-container" class="container-fluid mb-4">
+        <div id="weather-information" class="row text-center row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+          <div class="col mt-4">
+            <div class="weather-info card">
+              <h2 class="cityName"></h2>
+               
+              <div class="temp"></div>
+              <div class="pics">
+                <img src="https://openweathermap.org/img/wn/04n.png" alt="" class="icon" />
+                <div class="description"></div>
+              </div>
+              <div class="humidity"></div>
+              <div class="wind"></div>
+              <div class="visibility"></div>
+              <div class="pressure"></div>
+              <div class="sunrise"></div>
+              <div class="sunset"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+              <!-- For forecast "Xiaodong Huang"-->
+              <div id="forecast-container" class="container-fluid mb-4"></div>
+              <div id="forecast-information" class="row text-center row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+              <div class="forecast" >
+                <h2 class="forecity"></h2>
+                <input type="radio" id="threeDay" onclick="threedis()" name="forecast" value=3>
+                <label for="threeDay">Three Day forecast</label><br>
+                <input type="radio" id="sevenDay" onclick="sevendis()" name="forecast" value=7>
+                <label for="sevenDay">Seven Day forecast</label><br>
+                <input type="radio" id="clear" onclick="clearfore()" name="forecast" value=0>
+                <label for="clear">Clear Forecast</label><br>
+              <!-- For forecast "Xiaodong Huang"-->
+              </div>
+              <div class="forecast-day">
+              </div>
+            </div>
+          </div>
+      
+    </div>
+    <script src="script.js" ></script>
     <script src="fireBase.js"></script>
     <script src="main.js"></script>
 </body>
+
 </html>

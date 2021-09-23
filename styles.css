@@ -1,5 +1,23 @@
-h1 {
-    color: blueviolet;
-    text-align: center;
-    padding-top: 200px;
+.weather-icon {
+    padding-right: 0px;
 }
+
+#weather-information {
+    margin-bottom: 40px;
+    left: 250px;
+}
+
+#add-btn {
+    margin-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.logout-btn {
+    margin-top: 10px;
+}
+
+
+
+ 
+
